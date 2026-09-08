@@ -1,0 +1,9 @@
+node_modules/
+dist/
+test-results/
+playwright-report/
+# Local design studies and QA may contain private documents.
+design/
+work/
+.DS_Store
+*.log
