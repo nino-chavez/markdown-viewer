@@ -8,7 +8,7 @@ Read Markdown as a document, with an outline, readable tables, and a dark theme.
 2. Choose **Open file**, drop a Markdown file into the window, or choose **Paste Markdown**.
 3. Read your document. Keep the viewer wherever you like and open it again whenever you need it.
 
-No installation, account, or server. Your documents stay on your device, and the originals stay unchanged.
+No installation, account, or server. Your documents stay on your device, and the originals stay unchanged. Tested in Chrome on macOS.
 
 ![Markdown Viewer displaying a sample team handbook, with a section outline, weekly schedule table, and reading controls](assets/readme/reader.png)
 
@@ -69,11 +69,11 @@ Browser tests build and open the packaged HTML in a temporary Chromium session. 
 To test against an existing debugging browser, set `BROWSE_CDP_URL` to its endpoint. To check a downloaded release, set `VIEWER_HTML_PATH` to the downloaded HTML file.
 
 ```text
-src/app.ts       — opening files and reader controls
-src/render.ts    — Markdown rendering and sanitization
-src/style.css    — reading layout and themes
-src/index.html   — application structure
-build.mjs        — bundle everything into one HTML file
+src/app.ts      — files and controls
+src/render.ts   — render and sanitize
+src/style.css   — layout and themes
+src/index.html  — page structure
+build.mjs       — offline HTML bundle
 ```
 
 ## License
