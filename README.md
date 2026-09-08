@@ -1,6 +1,6 @@
 # Markdown Viewer
 
-Read Markdown as a document, with an outline, readable tables, and a dark theme. One HTML file. Works offline.
+A small, offline reader for the Markdown file someone just sent you. Open reports, notes, and READMEs as formatted documents in your browser.
 
 **[Download Markdown Viewer](https://github.com/nino-chavez/markdown-viewer/releases/latest/download/Markdown.Viewer.html)** · [All releases](https://github.com/nino-chavez/markdown-viewer/releases)
 
@@ -13,6 +13,23 @@ No installation, account, or server. Your documents stay on your device, and the
 ![Markdown Viewer displaying a sample team handbook, with a section outline, weekly schedule table, and reading controls](assets/readme/reader.png)
 
 *Actual viewer with a [generic sample handbook](examples/team-handbook.md).*
+
+## When it fits
+
+Use it for occasional Markdown reading when you want a formatted view without setting up an editor. Keep one HTML file, drop in a document, and use the outline, tables, or print controls. You can share the viewer with a coworker without asking them to install an editor.
+
+If you already have a Markdown workflow that works, there is little reason to switch:
+
+| Your usual job | An existing option |
+| --- | --- |
+| Write Markdown in a browser, with preview and optional sync | [StackEdit](https://stackedit.io/) |
+| Read and edit in a dedicated Markdown app | [Typora](https://typora.io/) |
+| Keep and connect a collection of notes | [Obsidian](https://obsidian.md/) |
+| Edit plain text and code | [Sublime Text](https://www.sublimetext.com/) |
+
+Offline use is also available in other tools. This viewer’s particular convenience is its single, shareable HTML file and reading-only interface.
+
+For a one-time handoff where the recipient only needs to read, a PDF or an already-rendered HTML document may be easier. This viewer is useful when Markdown files keep arriving from different sources.
 
 ## Reading
 
