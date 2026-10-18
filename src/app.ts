@@ -1,6 +1,7 @@
 import { renderMarkdown, validateFile, MAX_BYTES } from './render';
 import { loadImages, isRasterFile, localPath, MAX_ASSET_BYTES, type ImageFiles } from './images';
 import { loadDiagrams } from './diagrams';
+import { setupPWA } from './pwa';
 const $ = <T extends HTMLElement>(id: string) => document.getElementById(id) as T;
 interface OpenDocument { name: string; text: string; assets: ImageFiles; base: string; loose: boolean }
 const documents: OpenDocument[] = [];
@@ -199,3 +200,4 @@ preview.addEventListener('click', e => {
   if (href?.startsWith('#')) { e.preventDefault(); try { document.getElementById(decodeURIComponent(href.slice(1)))?.scrollIntoView({ block: 'start' }); } catch { /* invalid anchor */ } }
 });
 updateButtons();
+setupPWA(openFiles, notify);

@@ -25,6 +25,18 @@ reading-width preferences may persist; document contents do not.
 
 Implemented for v0.2.0 on 2026-09-08. Preserve the single-file distribution, offline reading, and original Markdown. Images come from explicit file/folder selection or embedded raster data. Mermaid is bundled locally.
 
+## Installation and offline use
+
+The v0.3 delivery change preserves the existing layout, typography, reading controls, media restrictions, and session-only documents. The website and downloadable HTML share the same reader. The new controls sit at the bottom of the sidebar: Install app, App help, and offline readiness. The icon uses the existing M/down-arrow identity and palette.
+
+The website uses the standard web app manifest, `file_handlers`, `launchQueue`, and a service worker. These follow [Chrome's file-handling contract](https://developer.chrome.com/docs/capabilities/web-apis/file-handling) and the [service-worker lifecycle](https://web.dev/articles/service-worker-lifecycle). Internal reference: `apps/rally-hq/src/service-worker.ts` and `static/manifest.webmanifest`; this reader needs only application-file caching, without Rally's push, accounts, or score synchronization.
+
+Cache only a build-time allowlist of public app files. Keep document bytes, image bytes, names, and file handles in memory. The page's `connect-src 'none'` policy blocks fetch uploads. The service worker's separate policy permits same-origin downloads of app files. Opening an external link remains an explicit reader action.
+
+Do not force an update into an open window. A new service worker waits until old clients close, then activates. The sidebar reports a waiting update without reloading or clearing documents. File launches are serialized so a second Finder launch cannot cancel an earlier one. A failed handle read leaves other documents intact.
+
+Desktop Chrome is the Mac installation and Finder target. Other browsers retain the file picker and downloadable HTML. Register Markdown extensions only; do not claim `.txt` or change macOS defaults automatically. A file launch grants no neighboring-image access.
+
 ### Image access
 
 Opening a Markdown file does not grant access to neighboring images. **Open folder** establishes a root for relative paths and opens the selected Markdown documents. **Add images** attaches files to the current document; a unique basename may resolve a loose attachment. **Choose document folder** supplies the current document's image root without importing other Markdown files.
