@@ -4,7 +4,9 @@ Markdown Viewer is a static website on Cloudflare Pages. Documents are processed
 
 | Setting | Value |
 | --- | --- |
-| Production URL | https://nino-markdown-viewer.pages.dev/ |
+| Production URL | https://markdown.ninochavez.co/ |
+| Compatibility URL | https://nino-markdown-viewer.pages.dev/ |
+| Custom domain DNS | Proxied CNAME `markdown.ninochavez.co` → `nino-markdown-viewer.pages.dev` |
 | Cloudflare project | `nino-markdown-viewer` |
 | GitHub repository | `nino-chavez/markdown-viewer` |
 | Production branch | `main` |
@@ -14,6 +16,14 @@ Markdown Viewer is a static website on Cloudflare Pages. Documents are processed
 | Deployment trigger | Cloudflare's GitHub integration on push |
 
 Cloudflare Workers is the vendor's default for new sites. This project uses Pages because its Git integration is available through the existing account access. The Workers Builds API rejected that credential. Pages provides the required static hosting and automatic Git deployments without adding a CI credential or an application server.
+
+## Custom domain
+
+The official address is `markdown.ninochavez.co`, attached to this Pages project in the `ninochavez.co` zone. Associate a new hostname with Pages before creating its DNS record. Verify that the Pages domain becomes active and HTTPS serves the app. See [Cloudflare’s custom-domain instructions](https://developers.cloudflare.com/pages/configuration/custom-domains/).
+
+The original `pages.dev` address stays available for existing installations. Do not redirect its file-launch address across origins: an installed app’s identity and file permissions belong to its origin. New installations use the official address. Existing Mac users must install from that address and assign the new installation in Finder before removing the old app.
+
+The website sends `Cache-Control: public, no-cache, no-transform` so Cloudflare does not inject its Web Analytics script into the HTML. Keep this header on the standalone download too. The deployed privacy test caught analytics inherited from the custom domain; a Pages preview alone did not expose it. [Cloudflare documents this opt-out](https://developers.cloudflare.com/web-analytics/get-started/#sites-proxied-through-cloudflare).
 
 ## Release
 
@@ -27,9 +37,9 @@ The downloadable backup is built at `dist/Markdown Viewer.html` and served by th
 
 Check the newest Cloudflare deployment's status and Git commit, then fetch the production page, manifest, service worker, and icons. The manifest must register Markdown extensions with `file_handlers`, use `display: standalone`, and keep a stable root `id`.
 
-Run the deployed PWA checks with `VIEWER_BASE_URL=https://nino-markdown-viewer.pages.dev npx playwright test tests/pwa.e2e.ts`. The update test is local-only; the deployed tests must not create a test endpoint.
+Run the deployed PWA checks with `VIEWER_BASE_URL=https://markdown.ninochavez.co npx playwright test tests/pwa.e2e.ts`. The update test is local-only; the deployed tests must not create a test endpoint.
 
-Install using desktop Chrome on macOS, open a synthetic Markdown file through Finder's **Open With**, and repeat while the app is already running. Check the app opens offline after its public files are cached. Record native installation and Finder results separately from automated launch-handler tests.
+Install using desktop Chrome on macOS, open a synthetic Markdown file through Finder's **Open With**, and repeat while the app is already running. After assigning Finder’s **Get Info → Open with → Change All**, verify a plain double-click for `.md`, `.markdown`, `.mdown`, and `.mkd`. Check the app opens offline after its public files are cached. Record native installation and Finder results separately from automated launch-handler tests.
 
 The service worker caches an exact allowlist of public app files. Open document contents, images, and file handles must not appear in Cache Storage, IndexedDB, localStorage, or sessionStorage. Only theme and width preferences use localStorage. A test POST must be blocked by the page's content security policy.
 

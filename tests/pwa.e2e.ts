@@ -8,7 +8,8 @@ test('app installs an offline shell and cold-starts without storing or uploading
   context.on('request', request => requests.push(request.url()));
   const errors: string[] = [];
   page.on('pageerror', error => errors.push(error.message));
-  await page.goto('/');
+  const response = await page.goto('/');
+  expect(response!.headers()['cache-control']).toContain('no-transform');
   await expect(page.locator('#offline-status')).toHaveText('Ready for offline reading.');
   await expect.poll(() => page.evaluate(() => !!navigator.serviceWorker.controller)).toBe(true);
   const sentinel = 'PRIVATE-MARKDOWN-CONTENT-7e36e9';
@@ -105,6 +106,8 @@ test('manifest and install help explain Mac opening and fit small screens', asyn
 test('standalone backup keeps its download headers after hosting redirects', async ({ request }) => {
   const response = await request.get('/Markdown.Viewer.html');
   expect(response.ok()).toBe(true);
+  expect(response.headers()['cache-control']).toContain('no-transform');
+  expect(await response.text()).not.toContain('static.cloudflareinsights.com');
   expect(response.headers()['content-disposition']).toBe('attachment; filename="Markdown Viewer.html"');
   expect(response.headers()['content-security-policy']).toContain("script-src 'unsafe-inline'");
   expect(response.headers()['content-security-policy']).not.toContain("script-src 'self'");
