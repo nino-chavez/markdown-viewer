@@ -2,7 +2,7 @@
 
 A small reader for the Markdown file someone just sent you. Open reports, notes, and READMEs with local images and Mermaid diagrams. Read in your browser or install the app for offline use.
 
-**[Open Markdown Viewer](https://nino-markdown-viewer.pages.dev/)** · [Download the offline HTML](https://github.com/nino-chavez/markdown-viewer/releases/latest/download/Markdown.Viewer.html) · [All releases](https://github.com/nino-chavez/markdown-viewer/releases)
+**[Open Markdown Viewer](https://markdown.ninochavez.co/)** · [Download the offline HTML](https://github.com/nino-chavez/markdown-viewer/releases/latest/download/Markdown.Viewer.html) · [All releases](https://github.com/nino-chavez/markdown-viewer/releases)
 
 1. Open the website in Chrome, or download **Markdown.Viewer.html** and open it.
 2. Choose **Open file**, drop a Markdown file into the window, or choose **Paste Markdown**.
@@ -16,7 +16,7 @@ No account. Installation is optional. Your documents stay on your device, and th
 
 ## Install on Mac
 
-1. Open [Markdown Viewer](https://nino-markdown-viewer.pages.dev/) in **Google Chrome**.
+1. Open [Markdown Viewer](https://markdown.ninochavez.co/) in **Google Chrome**.
 2. Choose **Install app** in the sidebar and confirm Chrome's installation prompt.
 3. Wait for **Ready for offline reading** before disconnecting. The installed app can then open without an internet connection.
 4. In Finder, right-click a `.md` file and choose **Open With → Markdown Viewer**. Approve Chrome's file-opening prompt when shown.
@@ -24,6 +24,8 @@ No account. Installation is optional. Your documents stay on your device, and th
 If the install prompt is unavailable, use Chrome's **Cast, save, and share → Install page as app** menu. **App help** repeats these instructions inside the viewer.
 
 To make it the default for `.md` files, choose **Get Info → Open with → Markdown Viewer → Change All** in Finder. This is optional. The app also registers `.markdown`, `.mdown`, and `.mkd`; assign those separately if needed. It does not take over `.txt` files.
+
+If you installed the earlier `pages.dev` version, install again from the address above and choose the new app in Finder’s **Open with** setting. Chrome treats each website address as a separate app.
 
 Finder can open files into an existing app window. Opening a file does not grant access to neighboring images; select them with **Open folder** or **Add images**.
 
@@ -110,7 +112,7 @@ Checked in desktop Chrome on macOS, including a phone-sized viewport. Safari, Wi
 
 ## Sharing
 
-Send coworkers the **[website](https://nino-markdown-viewer.pages.dev/)**, the [download link](https://github.com/nino-chavez/markdown-viewer/releases/latest/download/Markdown.Viewer.html), or a copy of the HTML file. They do not need the source code or a GitHub account.
+Send coworkers the **[website](https://markdown.ninochavez.co/)**, the [download link](https://github.com/nino-chavez/markdown-viewer/releases/latest/download/Markdown.Viewer.html), or a copy of the HTML file. They do not need the source code or a GitHub account.
 
 If the file opens as text, use **Open With → Google Chrome**. Keep its `.html` extension. To update, download the latest release and replace your old viewer file.
 

@@ -3,7 +3,7 @@
   Referrer-Policy: no-referrer
   X-Frame-Options: DENY
   Permissions-Policy: camera=(), microphone=(), geolocation=()
-  Cache-Control: no-cache
+  Cache-Control: public, no-cache, no-transform
   Content-Security-Policy: default-src 'none'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; connect-src 'none'; worker-src 'self'; manifest-src 'self'; font-src 'none'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'
 
 /sw.js

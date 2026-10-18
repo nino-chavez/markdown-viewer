@@ -54,7 +54,7 @@ const styleName = `style-${hash(css)}.css`;
 const webPolicy = "default-src 'none'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; connect-src 'none'; worker-src 'self'; manifest-src 'self'; font-src 'none'; base-uri 'none'; form-action 'none'";
 const website = template
   .replace(/<meta http-equiv="Content-Security-Policy" content="[^"]*">/, `<meta http-equiv="Content-Security-Policy" content="${webPolicy}">`)
-  .replace('<!--APP_HEAD-->', '<meta name="description" content="Read local Markdown, images, and diagrams. Your documents stay on your device."><meta name="theme-color" content="#235da6"><link rel="manifest" href="./manifest.webmanifest"><link rel="icon" href="./icons/icon-192.png"><link rel="apple-touch-icon" href="./icons/icon-192.png">')
+  .replace('<!--APP_HEAD-->', '<link rel="canonical" href="https://markdown.ninochavez.co/"><meta name="description" content="Read local Markdown, images, and diagrams. Your documents stay on your device."><meta name="theme-color" content="#235da6"><link rel="manifest" href="./manifest.webmanifest"><link rel="icon" href="./icons/icon-192.png"><link rel="apple-touch-icon" href="./icons/icon-192.png">')
   .replace('<style>/*CSS*/</style>', `<link rel="stylesheet" href="./${styleName}">`)
   .replace('<script>/*JS*/</script>', `<script src="./${scriptName}" defer></script>`);
 await rm('dist/site', { recursive: true, force: true });
