@@ -21,12 +21,16 @@ createServer(async (req, res) => {
   }
   try {
     const path = decodeURIComponent(url.pathname);
-    const file = resolve(root, '.' + (path === '/' ? '/index.html' : path));
+    // Pages redirects the backup to its extensionless URL before serving it.
+    if (path === '/Markdown.Viewer.html') { res.writeHead(308, { Location: '/Markdown.Viewer' }).end(); return; }
+    const servedPath = path === '/Markdown.Viewer' ? path + '.html' : path;
+    const file = resolve(root, '.' + (path === '/' ? '/index.html' : servedPath));
     if (!file.startsWith(root + sep)) { res.writeHead(403).end(); return; }
     const body = await readFile(file);
     res.setHeader('Content-Type', types[extname(file)] || 'application/octet-stream');
     for (const rule of rules) {
-      if (rule.path !== '/*' && rule.path !== path) continue;
+      const matches = rule.path.endsWith('*') ? path.startsWith(rule.path.slice(0, -1)) : rule.path === path;
+      if (!matches) continue;
       for (const header of rule.headers) {
         if (header.startsWith('! ')) { res.removeHeader(header.slice(2)); continue; }
         const colon = header.indexOf(':');

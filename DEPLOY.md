@@ -35,7 +35,7 @@ The service worker caches an exact allowlist of public app files. Open document 
 
 ## Updates and recovery
 
-New versions wait until every viewer window closes. Never force a reload to apply an update: documents are session-only. Clearing site data removes the cached app; visiting the production URL online recreates it.
+New versions wait until every viewer window closes. Never force a reload to apply an update: documents are session-only. Clearing site data removes the cached app; visiting the production URL online recreates it. Offline startup uses the root URL (`/`), which is also the install and Finder launch address. URLs with query strings are deliberately outside the cache allowlist.
 
 To reverse a release, revert the relevant Git change through a reviewed PR and let the Git integration deploy it. Cloudflare's deployment history is also available for an urgent rollback. Both actions reverse shipped behavior and require an explicit rollback decision.
 

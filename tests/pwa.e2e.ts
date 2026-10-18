@@ -102,6 +102,15 @@ test('manifest and install help explain Mac opening and fit small screens', asyn
   expect(widths.scroll).toBeLessThanOrEqual(widths.viewport);
 });
 
+test('standalone backup keeps its download headers after hosting redirects', async ({ request }) => {
+  const response = await request.get('/Markdown.Viewer.html');
+  expect(response.ok()).toBe(true);
+  expect(response.headers()['content-disposition']).toBe('attachment; filename="Markdown Viewer.html"');
+  expect(response.headers()['content-security-policy']).toContain("script-src 'unsafe-inline'");
+  expect(response.headers()['content-security-policy']).not.toContain("script-src 'self'");
+  expect(await response.text()).toContain('id="third-party-notices"');
+});
+
 test('an available update waits without reloading open documents', async ({ page, request }) => {
   test.skip(!!process.env.VIEWER_BASE_URL, 'Update trigger is confined to the local test server.');
   await page.goto('/');
